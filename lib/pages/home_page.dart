@@ -1,15 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:time_tracker/services/auth_base.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key, @required this.onSignOut}) : super(key: key);
+  HomePage({Key key, @required this.auth, @required this.onSignOut})
+      : super(key: key);
 
+  final AuthBase auth;
   final void Function(User) onSignOut;
 
-  final User currentUser = FirebaseAuth.instance.currentUser;
-
   void _signOut() async {
-    await FirebaseAuth.instance.signOut();
+    await auth.signOut();
     onSignOut(null);
   }
 
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         color: Colors.white,
         child: Center(
-          child: Text(currentUser.uid),
+          child: Text(auth.currentUser.uid),
         ),
       ),
     );

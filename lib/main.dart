@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker/pages/landing_page.dart';
+import 'package:time_tracker/services/auth.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              home: LandingPage(),
+              home: LandingPage(
+                auth: Auth(),
+              ),
             );
           }
           return CircularProgressIndicator();
