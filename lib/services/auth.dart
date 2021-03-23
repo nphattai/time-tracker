@@ -5,6 +5,9 @@ class Auth implements AuthBase {
   final auth = FirebaseAuth.instance;
 
   @override
+  Stream<User> get onAuthChange => auth.authStateChanges();
+
+  @override
   User get currentUser => auth.currentUser;
 
   @override
