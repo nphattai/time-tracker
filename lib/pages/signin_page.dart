@@ -7,8 +7,28 @@ class SignInPage extends StatelessWidget {
 
   final AuthBase auth;
 
-  Future<void> _signIn() async {
-    auth.signIn();
+  Future<void> _signInAnonymous() async {
+    try {
+      auth.signInAnonymous();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      auth.signInWithGoogle();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _signInWithFacebook() async {
+    try {
+      auth.signInWithFacebook();
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -35,11 +55,11 @@ class SignInPage extends StatelessWidget {
               ),
               CustomButton(
                 title: 'Sign in with Google',
-                onPressed: () {},
+                onPressed: _signInWithGoogle,
               ),
               CustomButton(
                 title: 'Sign in with Facebok',
-                onPressed: () {},
+                onPressed: _signInWithFacebook,
               ),
               CustomButton(
                 title: 'Sign in with email',
@@ -47,7 +67,7 @@ class SignInPage extends StatelessWidget {
               ),
               CustomButton(
                 title: 'Go anonymous',
-                onPressed: _signIn,
+                onPressed: _signInAnonymous,
               )
             ],
           ),

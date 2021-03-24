@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:817484485491:android:db589d4de134d93c752b06",
+        "mobilesdk_app_id": "1:817484485491:android:148d4097e037114b752b06",
         "android_client_info": {
           "package_name": "com.example.time_tracker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "817484485491-9n328g5b0hupilp4730355trf7omvitj.apps.googleusercontent.com",
+          "client_id": "817484485491-9giu71g4tn9hp74d0k5mlgu6ssrdhbsf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.time_tracker",
-            "certificate_hash": "631a0fdf299b4f664506fb041b8a59b33c76dfc7"
+            "certificate_hash": "f16f73b8e872f367167dc68228311bab8157c359"
           }
         },
         {
@@ -37,6 +37,13 @@
             {
               "client_id": "817484485491-algfv37m3j2k3lboecn7uvk75daibsoe.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "817484485491-gffstktj79l2aejcgsct6kupu1o25ese.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.timeTracker"
+              }
             }
           ]
         }
