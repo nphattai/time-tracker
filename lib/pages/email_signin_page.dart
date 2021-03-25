@@ -60,13 +60,6 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    String primaryText = _formType == EmailSignInFormType.SIGN_IN
-        ? 'Sign in'
-        : 'Create an account';
-    String secondText = _formType == EmailSignInFormType.SIGN_IN
-        ? 'Need an account? Regester'
-        : 'Have an account? Sign in';
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -74,48 +67,61 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
         title: Text('Sign in'),
       ),
       backgroundColor: Colors.grey[200],
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextFormField(
-                  controller: _emailController,
-                  focusNode: _emailFocusNode,
-                  decoration: InputDecoration(labelText: 'Email'),
-                  onEditingComplete: () =>
-                      FocusScope.of(context).requestFocus(_passwordFocusNode),
+      body: SingleChildScrollView(
+        child: _buildForm(),
+      ),
+    );
+  }
+
+  Widget _buildForm() {
+    String primaryText = _formType == EmailSignInFormType.SIGN_IN
+        ? 'Sign in'
+        : 'Create an account';
+    String secondText = _formType == EmailSignInFormType.SIGN_IN
+        ? 'Need an account? Regester'
+        : 'Have an account? Sign in';
+
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              TextFormField(
+                controller: _emailController,
+                focusNode: _emailFocusNode,
+                decoration: InputDecoration(labelText: 'Email'),
+                onEditingComplete: () =>
+                    FocusScope.of(context).requestFocus(_passwordFocusNode),
+              ),
+              TextFormField(
+                controller: _passwordController,
+                focusNode: _passwordFocusNode,
+                onEditingComplete: _onSubmit,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              CustomButton(
+                onPressed: _onSubmit,
+                title: primaryText,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                onPressed: _toggleFormType,
+                child: Text(
+                  secondText,
+                  style: TextStyle(color: Colors.teal),
                 ),
-                TextFormField(
-                  controller: _passwordController,
-                  focusNode: _passwordFocusNode,
-                  onEditingComplete: _onSubmit,
-                  decoration: InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomButton(
-                  onPressed: _onSubmit,
-                  title: primaryText,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                TextButton(
-                  onPressed: _toggleFormType,
-                  child: Text(
-                    secondText,
-                    style: TextStyle(color: Colors.teal),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),
