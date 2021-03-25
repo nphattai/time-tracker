@@ -67,4 +67,18 @@ class Auth implements AuthBase {
         .signInWithCredential(facebookAuthCredential);
     return userCredential.user;
   }
+
+  @override
+  Future<User> createUserCredenntial(String email, String password) async {
+    final userCredential = await auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    return userCredential.user;
+  }
+
+  @override
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
+    final userCredential = await auth.signInWithCredential(
+        EmailAuthProvider.credential(email: email, password: password));
+    return userCredential.user;
+  }
 }

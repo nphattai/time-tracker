@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_tracker/pages/email_signin_page.dart';
 import 'package:time_tracker/services/auth_base.dart';
 import 'package:time_tracker/widgets/custom_button.dart';
 
@@ -63,7 +64,13 @@ class SignInPage extends StatelessWidget {
               ),
               CustomButton(
                 title: 'Sign in with email',
-                onPressed: () {},
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (context) => EmailSignInPage(
+                      auth: auth,
+                    ),
+                  ),
+                ),
               ),
               CustomButton(
                 title: 'Go anonymous',

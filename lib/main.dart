@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
           }
           if (snapshot.hasData) {
             return MaterialApp(
+              theme: ThemeData(
+                primaryColor: Colors.teal,
+              ),
               debugShowCheckedModeBanner: false,
               home: LandingPage(
                 auth: Auth(),
