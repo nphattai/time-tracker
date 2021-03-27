@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:time_tracker/pages/email_signin_page.dart';
+import 'package:time_tracker/services/auth.dart';
 import 'package:time_tracker/services/auth_base.dart';
 import 'package:time_tracker/widgets/custom_button.dart';
 
-class SignInPage extends StatelessWidget {
-  SignInPage({Key key, @required this.auth}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
 
-  final AuthBase auth;
+class _SignInPageState extends State<SignInPage> {
+  bool _isLoading = false;
+
+  AuthBase get auth => Provider.of<Auth>(context, listen: false);
 
   Future<void> _signInAnonymous() async {
     try {
-      auth.signInAnonymous();
+      setState(() {
+        _isLoading = true;
+      });
+      await auth.signInAnonymous();
     } catch (e) {
       print(e);
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -32,8 +46,20 @@ class SignInPage extends StatelessWidget {
     }
   }
 
+  Widget _buildHeader() {
+    if (_isLoading) {
+      return CircularProgressIndicator();
+    }
+    return Text(
+      'SIGN IN',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+      textAlign: TextAlign.center,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('isLoading $_isLoading');
     return Scaffold(
         appBar: AppBar(
           title: Text('Time Tracker'),
@@ -48,10 +74,10 @@ class SignInPage extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
-                child: Text(
-                  'SIGN IN',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.center,
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: _buildHeader(),
                 ),
               ),
               CustomButton(

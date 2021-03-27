@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:time_tracker/pages/landing_page.dart';
 import 'package:time_tracker/services/auth.dart';
 
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
                 primaryColor: Colors.teal,
               ),
               debugShowCheckedModeBanner: false,
-              home: LandingPage(
-                auth: Auth(),
+              home: Provider(
+                create: (BuildContext context) => Auth(),
+                child: LandingPage(),
               ),
             );
           }
